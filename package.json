@@ -1,0 +1,18 @@
+{
+  "name": "info-cli",
+  "version": "1.0.0",
+  "description": "simple help cli",
+  "main": "index.js",
+  "author": "shoulderkarlsson",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "backpack"
+  },
+  "dependencies": {
+    "commander": "^2.15.1"
+  },
+  "devDependencies": {
+    "backpack-core": "^0.7.0"
+  }
+}
