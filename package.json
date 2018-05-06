@@ -12,6 +12,7 @@
     "build": "backpack build"
   },
   "dependencies": {
+    "colors": "^1.2.4",
     "commander": "^2.15.1"
   },
   "devDependencies": {
