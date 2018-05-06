@@ -9,11 +9,13 @@
   "scripts": {
     "dev": "backpack",
     "start": "node build/main.js",
-    "build": "backpack build"
+    "build": "backpack build",
+    "dev-week":"node build/main.js --week"
   },
   "dependencies": {
     "colors": "^1.2.4",
-    "commander": "^2.15.1"
+    "commander": "^2.15.1",
+    "date-fns": "^1.29.0"
   },
   "devDependencies": {
     "backpack-core": "^0.7.0"
