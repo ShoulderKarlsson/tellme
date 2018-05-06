@@ -10,12 +10,14 @@
     "dev": "backpack",
     "start": "node build/main.js",
     "build": "backpack build",
-    "dev-week":"node build/main.js --week"
+    "dev-week": "node build/main.js --week",
+    "dev-network": "node build/main.js -n"
   },
   "dependencies": {
     "colors": "^1.2.4",
     "commander": "^2.15.1",
-    "date-fns": "^1.29.0"
+    "date-fns": "^1.29.0",
+    "isomorphic-fetch": "^2.2.1"
   },
   "devDependencies": {
     "backpack-core": "^0.7.0"
