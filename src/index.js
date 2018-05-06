@@ -7,18 +7,16 @@ const main = () => {
   attachPlugins(plugins, program)
   parseProgram(program)
 
-
   // Displays help if no special arguments are given
-  if (process.argv.length === 2) displayHelp(program)
+  if (process.argv.length === 2) program.outputHelp()
 }
 
 const attachPlugins = (plugins, program) => {
-  plugins.forEach(({ description, resolver, command }) => {
-    program.option(`${command.short}, ${command.long}`, description, resolver)
-  })
+  plugins.forEach(({ description, resolver, commands }) =>
+    program.option(`${commands.short}, ${commands.long}`, description, resolver)
+  )
 }
 
-const displayHelp = program => program.outputHelp()
 
 const parseProgram = () => program
   .version('1.0')

@@ -9,7 +9,7 @@ import * as dfns from 'date-fns'
 export const weekPlugin = {
   description: 'Display week current weeknumber with additional information',
 
-  command: {
+  commands: {
     long: '--week',
     short: '-w'
   },
