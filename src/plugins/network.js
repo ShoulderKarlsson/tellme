@@ -10,7 +10,7 @@ export const networkPlugin = {
 
   resolver: async () => {
     const response = await fetch('https://ipapi.co/json/')
-    if (!response.ok) return console.log('Failed to fetch network information. Please try again.')
+    if (!response.ok) return console.log('Failed to fetch network information. Please try again.'.red)
 
     const {ip} = await response.json()
 
