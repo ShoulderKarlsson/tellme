@@ -12,10 +12,8 @@ export const networkPlugin = {
     const response = await fetch('https://ipapi.co/json/')
     if (!response.ok) return console.log('Failed to fetch network information. Please try again.')
 
-    const {ip, city} = await response.json()
+    const {ip} = await response.json()
 
-    console.log('')
-
-    // Present information about public-ip, city and countreCode.
+    console.log(`Local IP-address: ${ip}`.cyan)
   }
 }
