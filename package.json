@@ -12,7 +12,8 @@
     "build": "backpack build",
     "dev-week": "yarn build && node build/main.js --week",
     "dev-network": "yarn build && node build/main.js -n",
-    "dev-leap": "yarn build && node build/main.js --leap-year"
+    "dev-leap": "yarn build && node build/main.js --leap-year",
+    "dev-red": "yarn build && node build/main.js -r"
   },
   "dependencies": {
     "colors": "^1.2.4",
