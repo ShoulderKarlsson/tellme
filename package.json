@@ -16,6 +16,7 @@
     "dev-red": "yarn build && node build/main.js -r"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
     "colors": "^1.2.4",
     "commander": "^2.15.1",
     "date-fns": "^1.29.0",
