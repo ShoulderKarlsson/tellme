@@ -1,13 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import cheerio from 'cheerio'
 import fs from 'fs'
-import { promisify, debuglog } from 'util'
 import path from 'path'
-
-// const writeFileP = promisify(fs.writeFile)
-// const readFileP = promisify(fs.readFile)
-
-
 
 export const redDaysPlugin = {
   description: 'Displays information about \'red days\'',
