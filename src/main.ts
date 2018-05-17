@@ -1,5 +1,5 @@
 import program from 'commander'
-import plugins from './plugins'
+import * as plugins from './plugins'
 
 const main = () => {
   attachPlugins(plugins, program)
@@ -23,7 +23,7 @@ const attachPlugins = (plugins, program) => {
   )
 }
 
-const parseProgram = () => program
+const parseProgram = program => program
   .version('1.0')
   .parse(process.argv)
 
