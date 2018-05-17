@@ -1,7 +1,7 @@
 
 export type Plugin = {
   description: string
-  command: {
+  commands: {
     long: string
     short: string
   }

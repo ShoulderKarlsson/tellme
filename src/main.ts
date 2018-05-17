@@ -1,5 +1,6 @@
 import program from 'commander'
 import * as plugins from './plugins'
+import {Plugin} from './entities'
 
 const main = () => {
   attachPlugins(plugins, program)
@@ -17,7 +18,7 @@ const main = () => {
  * @param {Array} plugins list of all plugins
  * @param {Commander} program The commander instance 
  */
-const attachPlugins = (plugins, program) => {
+const attachPlugins = (plugins: Array<Plugin>, program) => {
   plugins.forEach(({ description, resolver, commands }) =>
     program.option(`${commands.short}, ${commands.long}`, description, resolver)
   )
