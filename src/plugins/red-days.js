@@ -1,5 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import cheerio from 'cheerio'
+
+//These can be removed later when HTML file is no longer used
 import fs from 'fs'
 import path from 'path'
 
@@ -11,8 +13,6 @@ export const redDaysPlugin = {
   },
 
   resolver: async () => {
-
-    console.log(' > Fetching data!')
     // const html = await fetchPage('http://www.kalender.se/helgdagar')
     //   .catch(error => {
     //     console.log(error)
@@ -20,9 +20,14 @@ export const redDaysPlugin = {
 
     const html = fs.readFileSync(path.join(__dirname, 'info.html'))
 
-    console.log(' > Starting to parse HTML')
     const information = parseHtml(html)
+
+    present(information)
   }
+}
+
+const present = information => {
+
 }
 
 
@@ -33,53 +38,33 @@ const fetchPage = url => fetch(url)
 
 const parseHtml = html => {
   const data = cheerio.load(html)
-  // const info = data('.table-striped').children('tbody').children('tr').children('td')
   const info = data('.table-striped').children('tbody').children('tr')
-
-  const collectDataFromTag = () => {
-
-  }
-
-  info.each((i, element) => {
-    const tds = element.children
+  return info.map((i, element) => {
+    const result = element.children
       .filter(element => element.name === 'td')
       .map(({ children }) => children)
       .reduce((acc, curr) => [...acc, ...curr], [])
       .reduce((acc, curr) => {
-        // console.log(curr)
         if (curr.name === 'a') {
-          console.log('found aTag')
           const [aTag] = curr.children
-          // console.log(aTag.data)
           return [
             ...acc,
-            { data: aTag.data }
+            aTag.data
           ]
         }
         if ('data' in curr && curr.data.trim() !== '') {
-          console.log('found regular elemnt')
           return [
             ...acc,
-            { data: curr.data }
+            curr.data
           ]
         }
 
         return acc
 
       }, [])
-    console.log(' ')
-    console.log(tds)
-  })
 
-
-
-  // info.each((i, e) => {
-  //   const aTag = e.children.find(tag => tag.name === 'a')
-  //   if (aTag) {
-  //     console.log(aTag.firstChild.data)
-  //   } else {
-  //     console.log(e.firstChild.data)
-  //   }
-  // })
-
+    // Want each entry in array
+    // So I they can be processed as a single unit
+    return [result]
+  }).toArray()
 }
