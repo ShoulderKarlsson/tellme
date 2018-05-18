@@ -1,12 +1,13 @@
 import isLeapYear from 'date-fns/is_leap_year'
 import addYears from 'date-fns/add_years'
-import * as dfns from 'date-fns'
+import chalk from 'chalk'
+import {Plugin} from '../entities'
 
-export const leapYearPlugin = {
+export const leapYearPlugin: Plugin = {
   description: 'Get information about current or coming leap year',
   commands: {
     long: '--leap-year',
-    short: '-l'
+    short: '-l',
   },
   resolver: () => {
     const now = new Date()
@@ -20,8 +21,8 @@ export const leapYearPlugin = {
 
     years.forEach(date => {
       isLeapYear(date)
-        ? console.log(` - ${date.getFullYear()}`.green)
-        : console.log(` - ${date.getFullYear()}`.magenta)
+        ? console.log(chalk.cyanBright(` - ${date.getFullYear()}`))
+        : console.log(chalk.magentaBright(` - ${date.getFullYear()}`))
     })
-  }
+  },
 }

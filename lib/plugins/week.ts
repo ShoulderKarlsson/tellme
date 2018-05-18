@@ -1,5 +1,4 @@
-import * as colors from 'colors'
-// import getISOWeek from 'date-fns/get_iso_week'
+import chalk from 'chalk'
 import {getISOWeek, startOfWeek, eachDay, endOfISOWeek, format} from 'date-fns'
 
 export const weekPlugin = {
@@ -18,9 +17,9 @@ export const weekPlugin = {
     const weekDates = eachDay(startDateOfWeek, endDateOfWeek)
 
     console.log(' ')
-    console.log(`Current Week is ${currentWeek}. (Dates for this week)`.cyan)
+    console.log(chalk.cyan(`Current Week is ${currentWeek}. (Dates for this week)`))
     weekDates
-      .map(date => ` - ${format(date, 'Do dddd')}`.magenta)
-      .forEach(date => console.log(`${date}`.magenta))
+      .map(date => ` - ${format(date, 'Do dddd')}`)
+      .forEach(date => console.log(chalk.magentaBright(`${date}`)))
   }
 }
