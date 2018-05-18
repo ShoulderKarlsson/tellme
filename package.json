@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "backpack",
+    "dev": "backpack dev",
     "start": "node build/main.js",
     "build": "backpack build",
     "dev-week": "yarn build && node build/main.js --week",
@@ -16,6 +16,8 @@
     "dev-red": "yarn build && node build/main.js -r"
   },
   "dependencies": {
+    "@types/date-fns": "^2.6.0",
+    "awesome-typescript-loader": "3.0.0-beta.18",
     "cheerio": "^1.0.0-rc.2",
     "colors": "^1.2.4",
     "commander": "^2.15.1",
@@ -23,6 +25,7 @@
     "isomorphic-fetch": "^2.2.1"
   },
   "devDependencies": {
-    "backpack-core": "^0.7.0"
+    "backpack-core": "^0.7.0",
+    "typescript": "^2.8.3"
   }
 }

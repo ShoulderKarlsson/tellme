@@ -4,4 +4,4 @@ import {leapYearPlugin as leapYear} from './leap-year'
 import {redDaysPlugin as redDays} from './red-days'
 import {Plugin} from '../entities'
 
-export default [week, network, leapYear, redDays] as Array<Plugin>
+export const plugins: Array<Plugin> = [week, network, leapYear, redDays]
