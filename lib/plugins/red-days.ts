@@ -1,40 +1,44 @@
 import fetch from 'isomorphic-fetch'
 import cheerio from 'cheerio'
-
-import {Plugin} from '../entities'
+import {Plugin, Result, ResultTypes, Fail, Success} from '../entities'
+import {success, fail, presentFailure} from '../helpers'
 
 export const redDaysPlugin: Plugin = {
   description: "Displays information about 'red days'",
   commands: {
     long: '--red-days',
-    short: '-r',
+    short: '-r'
   },
 
   resolver: async () => {
-    const html = await fetchPage('http://www.kalender.se/helgdagar').catch(
-      (error: any) => {
-        console.log(error)
-      }
+    const result: Result = await fetchHtmlData(
+      'http://www.kalender.se/helgdagar'
     )
 
-    const information = parseHtml(html)
+    if (result.type === ResultTypes.Fail) {
+      return presentFailure(result)
+    }
 
-    present(information)
-  },
+    const parsedData = parseHtml(result.data)
+
+    console.log(parsedData)
+  }
 }
 
 const present = (information: any) => {
   console.log(information)
 }
 
-const fetchPage = (url: string) =>
-  fetch(url)
-    .then(
-      (response: any) => (response.ok ? response : Promise.reject(response))
-    )
-    .then((response: any) => response.text())
+const fetchHtmlData = (url: string): Promise<Result> => {
+  return fetch(url).then(
+    async (response: any) =>
+      response.ok
+        ? success(await response.text())
+        : fail('Failed to fetch calender page', 'redDaysPlugin', response)
+  )
+}
 
-const parseHtml = (html: any) => {
+const parseHtml = (html: string) => {
   const data = cheerio.load(html)
   const info = data('.table-striped')
     .children('tbody')
@@ -57,7 +61,6 @@ const parseHtml = (html: any) => {
 
           return acc
         }, [])
-
 
       // Putting each entry inside array
       // so we can process as a unit
