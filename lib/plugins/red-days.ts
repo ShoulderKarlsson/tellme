@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import cheerio from 'cheerio'
 import {Plugin, Result, ResultTypes, Fail, Success} from '../entities'
-import {success, fail, presentFailure} from '../helpers'
+import {success, fail, presentFailure, pipe} from '../helpers'
 
 export const redDaysPlugin: Plugin = {
   description: "Displays information about 'red days'",
@@ -19,15 +19,24 @@ export const redDaysPlugin: Plugin = {
       return presentFailure(result)
     }
 
-    const parsedData = parseHtml(result.data)
+    const transformedData = pipe(
+      collectHtmlData,
+      transform
+    )(result.data)
 
-    console.log(parsedData)
+
   }
 }
 
-const present = (information: any) => {
-  console.log(information)
-}
+
+const transform = (htmlData: Array<Array<string>>) => htmlData
+  .reduce((acc, curr) => {
+
+
+
+    return acc
+  }, [])
+
 
 const fetchHtmlData = (url: string): Promise<Result> => {
   return fetch(url).then(
@@ -38,13 +47,13 @@ const fetchHtmlData = (url: string): Promise<Result> => {
   )
 }
 
-const parseHtml = (html: string) => {
+const collectHtmlData = (html: string) => {
   const data = cheerio.load(html)
   const info = data('.table-striped')
     .children('tbody')
     .children('tr')
 
-  return info
+  const redDaysdata = info
     .map((i, element: CheerioElement) => {
       const result = element.children
         .filter(element => element.name === 'td')
@@ -66,5 +75,8 @@ const parseHtml = (html: string) => {
       // so we can process as a unit
       return [result]
     })
-    .toArray()
+    .toArray() as Array<any>
+
+  // First array is empty, removing this
+  return redDaysdata.filter(redDaysInformation => redDaysInformation.length)
 }
