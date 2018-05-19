@@ -13,9 +13,10 @@ export const fail = (reason: string, origin: string, data: any): Fail => ({
   origin
 })
 
-
 export const presentFailure = (data: Fail): void => {
   console.log(data.data)
   console.log(chalk.redBright(data.reason))
   console.log(chalk.magentaBright(data.origin))
 }
+
+export const pipe = (...fns) => data => fns.reduce((a, b) => b(a), data)
