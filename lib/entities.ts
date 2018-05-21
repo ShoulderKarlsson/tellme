@@ -7,7 +7,7 @@ export type Plugin = {
     long: string
     short: string
   }
-  resolver: () => any
+  resolver: () => Promise<any> | any
 }
 
 export type Result = Success | Fail
