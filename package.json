@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "tsc --watch",
     "build": "tsc -p ./tsconfig.json",
-    "start": "yarn build && node ./dist/main.js"
+    "start": "yarn build && node ./dist/main.js",
+    "test": "mocha test"
   },
   "version": "1.0.0",
   "description": "cli for telling me things",
@@ -20,11 +21,13 @@
     "isomorphic-fetch": "^2.2.1"
   },
   "devDependencies": {
-    "@types/cheerio": "^0.22.7",
     "@types/chalk": "^2.2.0",
+    "@types/cheerio": "^0.22.7",
     "@types/commander": "^2.12.2",
     "@types/date-fns": "^2.6.0",
     "@types/isomorphic-fetch": "^0.0.34",
-    "@types/node": "^10.1.1"
+    "@types/node": "^10.1.1",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
   }
 }
