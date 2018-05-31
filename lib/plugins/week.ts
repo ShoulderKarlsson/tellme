@@ -26,7 +26,7 @@ export const weekPlugin: Plugin = {
 
     console.log(' ')
     console.log(
-      chalk.cyan(`Current Week is ${currentWeek}. (Dates for this week)`)
+      chalk.cyan(`Current Week is ${currentWeek}, dates for this week`)
     )
     weekDates
       .map(date => ` - ${format(date, 'Do dddd')}`)
