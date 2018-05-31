@@ -3,10 +3,6 @@ import {Plugin} from './lib/entities'
 import {plugins} from './lib/plugins'
 
 const main = () => {
-  // Attaching all plugins
-  // plugins.forEach(({description, resolver, commands}: Plugin) =>
-  //   program.option(`${commands.short}, ${commands.long}`, description, resolver)
-  // )
 
   attachPlugins(plugins, program)
 
