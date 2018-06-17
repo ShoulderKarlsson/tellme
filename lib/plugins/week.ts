@@ -29,7 +29,16 @@ export const weekPlugin: Plugin = {
       chalk.cyan(`Current Week is ${currentWeek}, dates for this week`)
     )
     weekDates
-      .map(date => ` - ${format(date, 'Do dddd')}`)
-      .forEach(date => console.log(chalk.magentaBright(`${date}`)))
+      .map(date => ({
+        formatted: ` - ${format(date, 'Do dddd')}`,
+        isToday: isToday(date)
+      }))
+      .forEach(({formatted, isToday}) =>
+        console.log(
+          isToday
+            ? chalk.cyanBright(`${formatted}`)
+            : chalk.magentaBright(`${formatted}`)
+        )
+      )
   }
 }
