@@ -23,6 +23,6 @@ export const networkPlugin: Plugin = {
 
     if (result.type === ResultTypes.Fail) return presentFailure(result)
 
-    console.log(chalk.cyanBright(`Local IP-address: ${result.data.ip}`))
+    console.log(chalk.cyanBright(`IP-address: ${result.data.ip}`))
   }
 }
